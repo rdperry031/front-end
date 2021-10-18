@@ -7,6 +7,7 @@ export default function AddEvent() {
 
     const [formValues, setFormValues] = useState({
         name: '',
+        description:'',
         time: '',
         date: '',
         location: '',
@@ -22,27 +23,33 @@ export default function AddEvent() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // axiosWithAuth().post(`/potlucks`, formValues)
-        // .then(res => {
-        //     push('/upcomingevents')
-        // })
-        // .catch(err => console.log(err))
-        setTimeout(() => {
-            alert(JSON.stringify(formValues, null, 2));
-          },1000)
+        axiosWithAuth().post(`/potlucks`, formValues)
+        .then(res => {
+            push('/upcomingevents')
+        })
+        .catch(err => console.log({ err }))
+        
     }
 
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor= 'potluck-name'>Potluck Name</label>
+            <label htmlFor= 'potluck_name'>Potluck Name</label>
              <input
-                id='potluck-name'
+                id='potluck_name'
                 value={formValues.name}
                 name='name'
                 onChange={handleChange}
                 />
-            <label htmlFor= 'time'>Time</label>
+            <label htmlFor= 'potluck_time'>Time</label>
+            <label htmlFor= 'potluck_description'>Potluck Description</label>
+             <input
+                id='potluck_description'
+                value={formValues.description}
+                name='description'
+                type='text'
+                onChange={handleChange}
+             />
              <input 
                 id='time'
                 value={formValues.time}
@@ -50,7 +57,7 @@ export default function AddEvent() {
                 type='time'
                 onChange={handleChange}
                 />
-            <label htmlFor='date'>Date</label>
+            <label htmlFor='potluck_date'>Date</label>
              <input 
                 id='date'
                 value={formValues.date}
@@ -58,7 +65,7 @@ export default function AddEvent() {
                 type='date'
                 onChange={handleChange}
              />
-            <label htmlFor='location'>Location</label> 
+            <label htmlFor='potluck_location'>Location</label> 
              <input
                 id='location'
                 value={formValues.location}
