@@ -7,10 +7,11 @@ const StyledHeader = styled.div`
     h1{
         font-size: 2rem;
     }
-    .header{
-        padding: 1%;
+    .teamHeader{
+        padding-top: .5%;
+        padding-bottom: .5%;
         background-color: #CB997E;
-        margin-bottom: 0;
+  
     }
 
 `
@@ -20,20 +21,30 @@ const StyledCards = styled.div`
     justify-content:space-evenly;
     flex-wrap: wrap;
     background-color: #B7B7A4;
+
 .card{
+    text-align: center;
     width: 25%;
     background-color: #FFE8D6;
     border-radius: 10%;
     margin: 1%;
+    margin-bottom: 2%;
+    box-shadow: 5px 10px #FFD1AD;
 
     img{
-        width: 50%;
+        height: 60%;
+        width: 45%;
         border-radius: 10%;
-        margin-top: 3%;
+        margin: 2%;
+
+        
     }
  
     h2{
         font-size: 1rem;
+    }
+    p{
+        padding-bottom: 1%;
     }
 }
 
@@ -45,7 +56,7 @@ export default function Team() {
     return(
         <team>
             <StyledHeader>
-            <div className="header">
+            <div className="teamHeader">
                 <h1>Meet the Team!</h1>
             </div>  
             </StyledHeader>
