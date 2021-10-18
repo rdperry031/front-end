@@ -48,39 +48,39 @@ export default function AddEvent() {
             <label htmlFor= 'potluck_name'>Potluck Name</label>
              <input
                 id='potluck_name'
-                value={formValues.name}
-                name='name'
+                value={formValues.potluck_name}
+                name='potluck_name'
                 onChange={handleChange}
                 />
             <label htmlFor= 'potluck_time'>Time</label>
             <label htmlFor= 'potluck_description'>Potluck Description</label>
              <input
                 id='potluck_description'
-                value={formValues.description}
-                name='description'
+                value={formValues.potluck_description}
+                name='potluck_description'
                 type='text'
                 onChange={handleChange}
              />
              <input 
                 id='time'
-                value={formValues.time}
-                name='time'
+                value={formValues.potluck_time}
+                name='potluck_time'
                 type='time'
                 onChange={handleChange}
                 />
             <label htmlFor='potluck_date'>Date</label>
              <input 
                 id='date'
-                value={formValues.date}
-                name='date'
+                value={formValues.potluck_date}
+                name='potluck_date'
                 type='date'
                 onChange={handleChange}
              />
             <label htmlFor='potluck_location'>Location</label> 
              <input
-                id='location'
-                value={formValues.location}
-                name='location'
+                id='potluck_location'
+                value={formValues.potluck_location}
+                name='potluck_location'
                 onChange={handleChange}
              />
             <button>Save Changes</button>

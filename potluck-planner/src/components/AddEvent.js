@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utilities/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 
 export default function AddEvent() {
     const { push } = useHistory();
@@ -21,6 +22,7 @@ export default function AddEvent() {
         })
     }
 
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         axiosWithAuth().post(`/potlucks`, formValues)
@@ -28,6 +30,7 @@ export default function AddEvent() {
             push('/upcomingevents')
         })
         .catch(err => console.log({ err }))
+        
         
     }
 
@@ -37,39 +40,40 @@ export default function AddEvent() {
             <label htmlFor= 'potluck_name'>Potluck Name</label>
              <input
                 id='potluck_name'
-                value={formValues.name}
-                name='name'
+                value={formValues.potluck_name}
+                name='potluck_name'
                 onChange={handleChange}
                 />
             <label htmlFor= 'potluck_time'>Time</label>
             <label htmlFor= 'potluck_description'>Potluck Description</label>
              <input
                 id='potluck_description'
-                value={formValues.description}
-                name='description'
+                value={formValues.potluck_description}
+                name='potluck_description'
                 type='text'
                 onChange={handleChange}
              />
+            <label htmlFor='potluck_time'>Time</label> 
              <input 
-                id='time'
-                value={formValues.time}
-                name='time'
+                id='potluck_time'
+                value={formValues.potluck_time}
+                name='potluck_time'
                 type='time'
                 onChange={handleChange}
                 />
             <label htmlFor='potluck_date'>Date</label>
              <input 
-                id='date'
-                value={formValues.date}
-                name='date'
+                id='potluck_date'
+                value={formValues.potluck_date}
+                name='potluck_date'
                 type='date'
                 onChange={handleChange}
              />
             <label htmlFor='potluck_location'>Location</label> 
              <input
-                id='location'
-                value={formValues.location}
-                name='location'
+                id='potluck_location'
+                value={formValues.potluck_location}
+                name='potluck_location'
                 onChange={handleChange}
              />
             <button>Create Potluck</button>
