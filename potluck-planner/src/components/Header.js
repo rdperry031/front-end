@@ -6,7 +6,7 @@ const StyledHeader = styled.header`
   nav {
     height: var(--nav-height);
     width: 100%;
-    background-color: red;
+    background-color: var(--secondary-color);
     display: flex;
   }
 `;

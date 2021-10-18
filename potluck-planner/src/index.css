@@ -1,13 +1,18 @@
+@import url("../src/reset.css");
+
 /* Using root so we can have one place for constant css styles */
 :root {
   --nav-height: 64px;
+  --primary-color: #eeeeee;
+  --secondary-color: #a68a64;
+  --accent-color: #84a98c;
+  --main-text-color: black;
 }
 
-* {
-  box-sizing: border-box;
-}
+/* Common Classes */
 
+/* Body Styles */
 body {
-  margin: 0;
-  padding: 0;
+  background-color: var(--primary-color);
+  color: var(--main-text-color);
 }
