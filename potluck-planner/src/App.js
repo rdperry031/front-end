@@ -18,8 +18,6 @@ import PrivateRoute from './components/PrivateRoute';
 function App() {
   return (
     <div className="App">
-      <Link to="/login">Login</Link>
-      <Link to="/">Home</Link>
         <Header />
         <Switch>
           <Route path="/logout">
