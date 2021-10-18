@@ -6,11 +6,11 @@ export default function AddEvent() {
     const { push } = useHistory();
 
     const [formValues, setFormValues] = useState({
-        name: '',
-        description:'',
-        time: '',
-        date: '',
-        location: '',
+        potluck_name: '',
+        potluck_description:'',
+        potluck_date: '',
+        potluck_time: '',
+        potluck_location: '',
         food:''
     });
     
