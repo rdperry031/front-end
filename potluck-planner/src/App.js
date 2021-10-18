@@ -1,6 +1,6 @@
 import { Route, Link, Switch } from "react-router-dom";
 import React from "react";
-import "./App.css";
+
 import Home from "./components/Home";
 import AddEvent from "./components/AddEvent";
 import EditEvent from "./components/EditEvent";
@@ -10,22 +10,40 @@ import Team from "./components/Team";
 import UpcomingEvents from "./components/UpcomingEvents";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
       <Header />
-
       <Switch>
-        <Route />
-        <Route path="/editevent" component={EditEvent} />
-        <Route path="/addevent" component={AddEvent} />
-        <Route path="/team" component={Team} />
-        <Route path="/upcomingevents" component={UpcomingEvents} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/" component={Home} />
+        <Route path="/logout">
+          <Logout />
+        </Route>
+        <Route path="/upcomingevents">
+          <UpcomingEvents />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/team">
+          <Team />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/add">
+          <AddEvent />
+        </Route>
+        <Route path="/edit">
+          <EditEvent />
+        </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
