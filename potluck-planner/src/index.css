@@ -9,10 +9,46 @@
   --main-text-color: black;
 }
 
-/* Common Classes */
+/* Universal Styling */
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  letter-spacing: -0.063rem;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.375rem;
+  letter-spacing: -0.039rem;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.05rem;
+}
+
+h4 {
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 0.938rem;
+  letter-spacing: -0.016rem;
+}
+
+p {
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.938rem;
+  letter-spacing: -0.016rem;
+}
 
 /* Body Styles */
 body {
+  font-family: "Spartan", sans-serif;
   background-color: var(--primary-color);
   color: var(--main-text-color);
 }
