@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utilities/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
 
 export default function AddEvent() {
     const { push } = useHistory();
