@@ -26,11 +26,10 @@ export default function AddEvent() {
         e.preventDefault()
         axiosWithAuth().post(`/potlucks`, formValues)
         .then(res => {
+            console.log(res)
             push('/upcomingevents')
         })
         .catch(err => console.log({ err }))
-        
-        
     }
 
 
@@ -45,12 +44,14 @@ export default function AddEvent() {
                 />
             <label htmlFor= 'potluck_time'>Time</label>
             <label htmlFor= 'potluck_description'>Potluck Description</label>
-             <input
+             <textarea
                 id='potluck_description'
                 value={formValues.potluck_description}
                 name='potluck_description'
                 type='text'
                 onChange={handleChange}
+                rows='10'
+                cols='40'
              />
             <label htmlFor='potluck_time'>Time</label> 
              <input 
