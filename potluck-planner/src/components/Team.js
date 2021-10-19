@@ -2,67 +2,145 @@ import React from 'react'
 import styled from 'styled-components';
 
 
+
+
+
+
+const StyledTeam = styled.div`
+min-height: calc(100vh - 210px - 37.33px);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+  
+   @media (max-width: 550px){
+        .cardsContainer{
+        width: 100%;
+        
+        
+        .card{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+        
+    
+            img{
+            
+            width: 80%;
+            height: 80%;
+            }
+        }
+    
+    }
+    
+        
+    }
+`
+
+
+
+
 const StyledHeader = styled.div`    
     
     h1{
-        font-size: 2rem;
+        font-size: 3rem;
+        line-height: 3.5rem;
     }
     .teamHeader{
-        padding-top: .5%;
+        text-align: center;
+        margin-top: 10%;
+        margin-bottom: 25%;
         padding-bottom: .5%;
-        background-color: #CB997E;
-  
+        background-color: #FFFFF;
+        padding-top: 2%;
+       
+        
     }
 
 `
 
 const StyledCards = styled.div`
+    margin: 0 auto;
     display:flex;
-    justify-content:space-evenly;
+    justify-content:center;
+    align-items:center;
     flex-wrap: wrap;
-    background-color: #B7B7A4;
-
+    background-color: var(--white);
+    
+    
 .card{
-    text-align: center;
-    width: 25%;
-    background-color: #FFE8D6;
-    border-radius: 10%;
-    margin: 1%;
-    margin-bottom: 2%;
-    box-shadow: 5px 10px #FFD1AD;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2rem;
+    
+    width: max-content;
+    height: 30%;
+    margin-top: 1%;
+    // flex: 0 0 30%;
+    
+    
 
     img{
-        height: 60%;
-        width: 45%;
-        border-radius: 10%;
-        margin: 2%;
-
-        
+        height: 350px;
+        width: 350px;
+        border-radius: 5%;
+       
     }
  
     h2{
-        font-size: 1rem;
+        margin-top: 1.5%;
+        padding: 1%;
+        font-size: 1.5rem;
     }
     p{
+        padding: 2%;
+        font-size: 1rem;
+        width: max-content;
         padding-bottom: 1%;
     }
 }
 
+    // @media (max-width: 550px){
+    //     .card{
+    //         padding: 0;
+    //         margin: 0;
+    //         width: max-content;
 
+    //         border: 1px solid red;
+        
+
+    //     img{
+    //         border: 1px solid red;
+    //         width: 50%;
+    //         height: 50%;
+            
+    //     }
+    
+    }
+       
+    }
+
+
+
+}
 `
 
 
 export default function Team() {
     return(
-        <team>
+        <StyledTeam>
             <StyledHeader>
             <div className="teamHeader">
                 <h1>Meet the Team!</h1>
             </div>  
             </StyledHeader>
 
-            <div className = 'main'>
-            <StyledCards>
+                <div></div>
+                <StyledCards className='cardsContainer'>
                 
                 <div className = 'card'>
                     <img
@@ -71,7 +149,7 @@ export default function Team() {
                         alt='Photo of Richard Perry'
                     />
                         <h2>Richard Perry</h2>
-                        <p>Backend Development</p>
+                        <p>Frontend Development</p>
                 </div>
 
                 <div className = 'card'>
@@ -81,7 +159,7 @@ export default function Team() {
                         alt='Photo of Jared Hall'
                     />
                         <h2>Jared Hall</h2>
-                        <p>Backend Development</p>
+                        <p>Frontend Development</p>
                 </div>
 
                 <div className='card'>
@@ -116,8 +194,8 @@ export default function Team() {
                 </div>
                 
                 </StyledCards>
-            </div>
-        </team>
+            
+        </StyledTeam>
 
     )}
 
