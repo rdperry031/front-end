@@ -7,8 +7,9 @@
 :root {
   --nav-height: 70px;
   --primary-color: #ffffff;
-  --secondary-color: #a68a64;
-  --accent-color: #84a98c;
+  --secondary-color: #c9a97a;
+  --secondary-color-opac: #c9a97aa9;
+  --accent-color: #8a9748;
   --main-text-color: black;
   --white: #ffffff;
   --black: black;
@@ -51,8 +52,8 @@ a {
 
 p {
   font-weight: 500;
-  font-size: 0.75rem;
-  line-height: 0.938rem;
+  font-size: 1rem;
+  line-height: 1.8rem;
   letter-spacing: -0.016rem;
 }
 
@@ -61,5 +62,6 @@ body {
   font-family: "Spartan", sans-serif;
   background-color: var(--primary-color);
   color: var(--main-text-color);
-  
+  max-width: 1980px;
+  margin: 0 auto;
 }

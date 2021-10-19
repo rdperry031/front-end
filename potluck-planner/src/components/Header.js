@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -10,6 +10,11 @@ const StyledHeader = styled.header`
     height: var(--nav-height);
     width: 100%;
     background-color: var(--secondary-color);
+
+    .home-link {
+      text-decoration: none;
+      color: inherit;
+    }
 
     h2 {
       margin-left: 3rem;
@@ -52,8 +57,6 @@ const StyledHeader = styled.header`
     }
 
     @media only screen and (max-width: 768px) {
-      height: calc(var(--nav-height) - 10px);
-
       .nav-links-container {
         display: none;
       }
@@ -80,8 +83,7 @@ const StyledHeader = styled.header`
   .nav-mobile-active {
     padding-top: 1rem;
     flex-wrap: wrap;
-    height: max-content;
-
+    height: calc(var(--nav-height) * 3);
     h2,
     .nav-links-container {
       flex: 0 0 50%;
@@ -104,9 +106,28 @@ const StyledHeader = styled.header`
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: flex-end;
       height: calc(var(--nav-height) * 2);
       width: 100%;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        height: 45%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background-color: var(--black);
+          color: white;
+          font-weight: bold;
+        }
+      }
+      a:nth-of-type(1) {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 `;
@@ -133,10 +154,31 @@ export default function Header() {
   return (
     <StyledHeader>
       <nav className={navOpen && !isDesktop ? "nav-mobile-active" : null}>
-        <h2>Potluck Planner </h2>
+        <Link to="/" className="home-link">
+          <h2>Potluck Planner </h2>
+        </Link>
+
         <div className="nav-links-container">
-          <Link to="/login">Login</Link>
-          <Link to="/signup"> Sign Up</Link>
+          <NavLink
+            to="/login"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "var(--white)",
+            }}
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/signup"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "var(--white)",
+              border: "1px solid var(--white)",
+            }}
+          >
+            {" "}
+            Sign Up
+          </NavLink>
         </div>
 
         <div onClick={toggleNav} className="mobile-nav-menu-btn">
@@ -148,13 +190,29 @@ export default function Header() {
         </div>
 
         <div className="mobile-nav-links-container ">
-          <Link onClick={toggleNav} to="/login">
+          <NavLink
+            onClick={toggleNav}
+            to="/login"
+            activeStyle={{
+              backgroundColor: "var(--black)",
+              color: "var(--white)",
+              fontWeight: "bold",
+            }}
+          >
             Login
-          </Link>
-          <Link onClick={toggleNav} to="/signup">
+          </NavLink>
+          <NavLink
+            onClick={toggleNav}
+            to="/signup"
+            activeStyle={{
+              backgroundColor: "var(--black)",
+              color: "var(--white)",
+              fontWeight: "bold",
+            }}
+          >
             {" "}
             Sign Up
-          </Link>
+          </NavLink>
         </div>
       </nav>
     </StyledHeader>
