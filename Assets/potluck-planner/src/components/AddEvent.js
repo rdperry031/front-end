@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axiosWithAuth from '../utilities/axiosWithAuth';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import PotluckItems from './PotluckItems';
 
 export default function AddEvent() {
     const { push } = useHistory();
-    const { id } = useParams();
 
     const [formValues, setFormValues] = useState({
         potluck_name: '',
@@ -14,15 +14,6 @@ export default function AddEvent() {
         potluck_location: '',
     });
     
-    useEffect(() => {
-        axiosWithAuth().get(`/potlucks/${id}`)
-            .then(res => {
-                setFormValues(res.data);
-            })
-            .catch(err => {console.log({ err })
-            })
-    },[id])
-
     const handleChange = (e) => {
         setFormValues({
             ...formValues,
@@ -30,15 +21,16 @@ export default function AddEvent() {
         })
     }
 
+    
     const handleSubmit = (e) => {
         e.preventDefault()
-        axiosWithAuth().put(`/potlucks`, formValues)
-        .then(res => {
-            setFormValues(res.data)
-            push('/upcomingevents')
-        })
-        .catch(err => console.log(err))
-        
+        // axiosWithAuth().post(`/potlucks`, formValues)
+        // .then(res => {
+        //     console.log(res)
+        //     push('/upcomingevents')
+        // })
+        // .catch(err => console.log({ err }))
+        console.log(formValues)
     }
 
 
@@ -53,7 +45,7 @@ export default function AddEvent() {
                 />
             <label htmlFor= 'potluck_time'>Time</label>
             <label htmlFor= 'potluck_description'>Potluck Description</label>
-            <textarea
+             <textarea
                 id='potluck_description'
                 value={formValues.potluck_description}
                 name='potluck_description'
@@ -62,8 +54,9 @@ export default function AddEvent() {
                 rows='10'
                 cols='40'
              />
+            <label htmlFor='potluck_time'>Time</label> 
              <input 
-                id='time'
+                id='potluck_time'
                 value={formValues.potluck_time}
                 name='potluck_time'
                 type='time'
@@ -71,7 +64,7 @@ export default function AddEvent() {
                 />
             <label htmlFor='potluck_date'>Date</label>
              <input 
-                id='date'
+                id='potluck_date'
                 value={formValues.potluck_date}
                 name='potluck_date'
                 type='date'
@@ -84,7 +77,8 @@ export default function AddEvent() {
                 name='potluck_location'
                 onChange={handleChange}
              />
-            <button>Save Changes</button>
+             <PotluckItems handleSubmit={handleSubmit}/>
+            <button>Create Potluck</button>
         </form>
     )
 }
