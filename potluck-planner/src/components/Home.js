@@ -6,10 +6,10 @@ import { ReactComponent as BannerIllustration } from "../../src/Images/Home-Page
 
 const StyledBannerContainer = styled.div`
   display: flex;
-  height: 65vh;
+  justify-content: center;
 
   .banner-text-container {
-    padding: 3rem 15rem 1.5rem 5rem;
+    padding: 4.5rem 15% 0rem 5%;
     flex: 0 0 53%;
     display: flex;
     flex-direction: column;
@@ -38,6 +38,64 @@ const StyledBannerContainer = styled.div`
       background-color: var(--accent-color);
     }
   }
+
+  svg {
+    flex: 0 0 40%;
+    height: max-content;
+    padding-top: 4.5rem;
+    margin-left: 2rem;
+  }
+
+  //   Large Desktop and smaller
+
+  @media only screen and (max-width: 1980px) {
+  }
+
+  // Laptop Large
+
+  @media only screen and (max-width: 1600px) {
+    .banner-text-container {
+      flex: 0 0 50%;
+    }
+
+    svg {
+      flex: 0 0 40%;
+      margin-top: 2%;
+      margin-left: 0;
+    }
+  }
+
+  //   Tablet breakpoint all the way to phone size
+  @media only screen and (max-width: 950px) {
+    .banner-text-container {
+      padding: 3%;
+    }
+  }
+
+  //   phones and smaller
+  @media only screen and (max-width: 768px) {
+    flex-wrap: wrap;
+
+    .banner-text-container {
+      flex: 0 0 80%;
+      padding-top: 2rem;
+
+      h1 {
+        margin-bottom: 1rem;
+      }
+
+      p:nth-of-type(1) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    svg {
+      flex: 0 0 80%;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      height: max-content;
+    }
+  }
 `;
 
 export default function Home() {
@@ -45,9 +103,7 @@ export default function Home() {
     <>
       <StyledBannerContainer>
         <div className="banner-text-container">
-          <h1>
-            Potluck <br></br> Planner
-          </h1>
+          <h1>Potluck Planner</h1>
 
           <p>
             If you have ever tried to organize a potluck through text messages,

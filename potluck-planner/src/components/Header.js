@@ -11,6 +11,11 @@ const StyledHeader = styled.header`
     width: 100%;
     background-color: var(--secondary-color);
 
+    .home-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
     h2 {
       margin-left: 3rem;
     }
@@ -149,7 +154,10 @@ export default function Header() {
   return (
     <StyledHeader>
       <nav className={navOpen && !isDesktop ? "nav-mobile-active" : null}>
-        <h2>Potluck Planner </h2>
+        <Link to="/" className="home-link">
+          <h2>Potluck Planner </h2>
+        </Link>
+
         <div className="nav-links-container">
           <NavLink
             to="/login"

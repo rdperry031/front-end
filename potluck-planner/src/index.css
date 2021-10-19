@@ -62,4 +62,6 @@ body {
   font-family: "Spartan", sans-serif;
   background-color: var(--primary-color);
   color: var(--main-text-color);
+  max-width: 1980px;
+  margin: 0 auto;
 }
