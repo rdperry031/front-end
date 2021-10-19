@@ -1,12 +1,18 @@
 @import url("../src/reset.css");
 
+/* Tablet breakpoint: 768px */
+/* Mobile breakpoint 480px */
+
 /* Using root so we can have one place for constant css styles */
 :root {
-  --nav-height: 64px;
+  --nav-height: 70px;
   --primary-color: #eeeeee;
   --secondary-color: #a68a64;
   --accent-color: #84a98c;
   --main-text-color: black;
+  --white: #ffffff;
+  --black: black;
+  --tablet-break-point: 768px;
 }
 
 /* Universal Styling */
@@ -37,6 +43,10 @@ h4 {
   font-size: 0.75rem;
   line-height: 0.938rem;
   letter-spacing: -0.016rem;
+}
+
+a {
+  font-weight: 500;
 }
 
 p {
