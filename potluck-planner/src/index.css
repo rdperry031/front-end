@@ -7,8 +7,9 @@
 :root {
   --nav-height: 70px;
   --primary-color: #ffffff;
-  --secondary-color: #a68a64;
-  --accent-color: #84a98c;
+  --secondary-color: #c9a97a;
+  --secondary-color-opac: #c9a97aa9;
+  --accent-color: #8a9748;
   --main-text-color: black;
   --white: #ffffff;
   --black: black;
