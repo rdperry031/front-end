@@ -6,7 +6,8 @@ const axiosWithAuth = () => {
     return axios.create({
         headers: {
             Authorization: token
-        }
+        },
+        baseURL: 'https://bw-potluck-102021.herokuapp.com/api'
     });
 }
 
