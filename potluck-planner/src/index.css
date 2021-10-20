@@ -10,6 +10,7 @@
   --secondary-color: #c9a97a;
   --secondary-color-opac: #c9a97aa9;
   --accent-color: #8a9748;
+  --accent-color-dark: #58602E;
   --main-text-color: black;
   --white: #ffffff;
   --black: black;
@@ -62,6 +63,4 @@ body {
   font-family: "Spartan", sans-serif;
   background-color: var(--primary-color);
   color: var(--main-text-color);
-  max-width: 1980px;
-  margin: 0 auto;
 }
