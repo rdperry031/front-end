@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utilities/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
-import PotluckItems from './PotluckItems';
+
 
 export default function AddEvent() {
     const { push } = useHistory();
@@ -14,6 +14,7 @@ export default function AddEvent() {
         potluck_location: '',
     });
     
+
     const handleChange = (e) => {
         setFormValues({
             ...formValues,
@@ -31,7 +32,6 @@ export default function AddEvent() {
         })
         .catch(err => console.log({ err }))
     }
-
 
     return (
         <form onSubmit={handleSubmit}>
@@ -76,7 +76,6 @@ export default function AddEvent() {
                 name='potluck_location'
                 onChange={handleChange}
              />
-             {<PotluckItems handleSubmit={handleSubmit}/>}
             <button>Create Potluck</button>
         </form>
     )
