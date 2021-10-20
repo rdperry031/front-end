@@ -1,20 +1,52 @@
 import React from "react";
 import styled from "styled-components";
+import rick from "../assets/Images/MeetTeam/rick.png"
+import collyn from "../assets/Images/MeetTeam/Collyn.jpeg"
+import erik from "../assets/Images/MeetTeam/erik.png"
+import richard from "../assets/Images/MeetTeam/richard.jpg"
+import jared from "../assets/Images/MeetTeam/jared.jpg"
+
+
+
+
 
 const StyledTeam = styled.div`
-  min-height: calc(100vh - 210px - 37.33px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
 
+@media (max-width: 550px){
+  .cardsContainer{
+
+    .card{
+        img{
+          -webkit-filter: grayscale(0%);
+
+          &:hover{ 
+            filter: none;
+            transform: none;
+           }
+        }
+    }
+}
+
+}
+
+
+
+
+  @media (min-height:700px){
+    height: calc(100vh - 210px);
+  }
+
+
     @media (max-width: 2070px){
         .cardsContainer{
-      
 
             .card{
-                // flex: 0 0 30%;
+              
                 img{
                   height: 200px;
                   width: 200px;
@@ -38,12 +70,11 @@ const StyledTeam = styled.div`
             }
         }
     }
-
-
-
-
+  
 
   @media (max-width: 550px) {
+    height: 100%;
+
     .cardsContainer {
       width: 100%;
 
@@ -51,15 +82,16 @@ const StyledTeam = styled.div`
         padding: 0;
         margin: 0;
         width: 100%;
-        margin-top: 3%;
-        margin-bottom: 3%;
-
-        img {
-          width: 80%;
-          height: 80%;
-        }
+        height: max-content;
       }
     }
+
+  
+
+
+
+
+
   }
 `;
 
@@ -85,7 +117,7 @@ const StyledCards = styled.div`
     align-items:center;
     flex-wrap: wrap;
     background-color: var(--white);
-    
+
     
 .card{
     display: flex;
@@ -98,12 +130,29 @@ const StyledCards = styled.div`
     height: 30%;
     margin-top: 1%;
     border: none;
+
+    &:hover{
+      
+      img{
+        transform: scale(1.1);
+        -webkit-transform-origin: 0% 100%;
+        border: none;
+
+          filter: none;
+          -webkit-filter: grayscale(0%);
+      }
+    }
+
     
 
     img{
         height: 350px;
         width: 350px;
-        border-radius: 5%;
+        border-radius: 50%;
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+        -webkit-transition: 0.3s;
+       
        
     }
  
@@ -135,9 +184,9 @@ export default function Team() {
       <div></div>
       <StyledCards className="cardsContainer">
         <div className="card">
-          <img
-            className="card-photo"
-            src="https://ca.slack-edge.com/ESZCHB482-U022J6ZTV97-b654dcf6572d-512"
+        <img
+            classNames="card-photo"
+            src={richard}
             alt="Photo of Richard Perry"
           />
           <h2>Richard Perry</h2>
@@ -147,7 +196,7 @@ export default function Team() {
         <div className="card">
           <img
             classNames="card-photo"
-            src="https://ca.slack-edge.com/ESZCHB482-U027EG8DCH3-9d69e6a9d3b6-512"
+            src={jared}
             alt="Photo of Jared Hall"
           />
           <h2>Jared Hall</h2>
@@ -157,7 +206,7 @@ export default function Team() {
         <div className="card">
           <img
             className="card-photo"
-            src="https://ca.slack-edge.com/ESZCHB482-U022J856RJ5-ec2e92843ae6-512"
+            src={rick}
             alt="Photo of Rick Mansfield"
           />
           <h2>Rick Mansfield</h2>
@@ -167,7 +216,7 @@ export default function Team() {
         <div className="card">
           <img
             className="card-photo"
-            src="https://ca.slack-edge.com/ESZCHB482-U02BKV6HY72-2d68c42b0aaf-512"
+            src={erik}
             alt="Photo of Erik Bahena"
           />
           <h2>Erik Bahena</h2>
@@ -177,7 +226,7 @@ export default function Team() {
         <div className="card">
           <img
             className="card-photo"
-            src="https://ca.slack-edge.com/ESZCHB482-U025153BPJN-ef39da67b12d-512"
+            src={collyn}
             alt="Photo of Collyn Godlewski"
           />
           <h2>Collyn Godlewski</h2>

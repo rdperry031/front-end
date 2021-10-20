@@ -23,11 +23,25 @@ import styled from "styled-components";
 
 const StyledLogin = styled.div`
 
-  margin: 5% auto 5% auto;
-  padding: 4% 3%;
-  width: 45%;
-  border-radius: 0.5rem;
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  height: calc(100vh - 210px);
+
+  width: 100%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  
+  
+  
+  form{
+    margin: 0 auto;
+    padding: 4% 3%;
+    width: 40%;
+    max-width: 750px;
+    border-radius: 0.5rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    height: max-content;
+  }
+
 
   input{
     margin-bottom: 1rem;
@@ -50,12 +64,15 @@ const StyledLogin = styled.div`
 
 
   @media (max-width: 1000px){
-    width: 70%;
+    form{
+      width: 70%;
+    }
   }
 
   @media (max-width: 768px){
-    width: 85%;
-    margin-top: 3rem;
+    form{
+      width: 85%;
+    }
   }
 
 
@@ -122,9 +139,9 @@ export default function Login(props) {
 
   return (
       <StyledLogin>
-        <h2>Login</h2>
 
         <Form onSubmit={login}>
+        <h2>Login</h2>
 
         <FormGroup>
           <Label for="username">Username:</Label>

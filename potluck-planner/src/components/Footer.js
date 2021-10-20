@@ -9,13 +9,16 @@ const Line = styled.hr`
     display: block;
     height: 1px;
     border: 0;
+    margin: 0;
     border-top: 1px solid black;
     
 `
 
 
 
-const StyledFooter = styled.div`
+const StyledFooter = styled.footer`
+    
+    
     width: 100%;
     margin: 0 auto;
     background-color:  var(--white);
@@ -26,6 +29,7 @@ const StyledFooter = styled.div`
     
    
     height: calc(var(--nav-height)*2);
+    
         a{
             padding-right: 5%;
             padding-top: .5%;
@@ -40,7 +44,24 @@ const StyledFooter = styled.div`
         p{
             padding-top: .5%;
             display:inline;
-           padding-left: 5%;
+            padding-left: 5%;
+        }
+    }
+    
+    @media (max-width: 310px){
+        .footerLinks{
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+
+
+            p{
+                padding-left: 0;
+            }
+            a{
+                padding-right: 0;
+            }
+            
         }
     }
 `
