@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utilities/axiosWithAuth';
 import { useHistory, useParams } from 'react-router-dom';
 
-export default function AddEvent() {
+export default function AddEvent(props) {
     const { push } = useHistory();
     const { id } = useParams();
+
+    const { handleEdit, handleEditCancel } = props;
 
     const [formValues, setFormValues] = useState({
         potluck_name: '',
@@ -85,6 +87,7 @@ export default function AddEvent() {
                 onChange={handleChange}
              />
             <button>Save Changes</button>
+            <button onClick={handleEditCancel}>Cancel Edit</button>
         </form>
     )
 }

@@ -12,9 +12,9 @@ export default function AddEvent() {
         potluck_date: '',
         potluck_time: '',
         potluck_location: '',
+        organizer:2,
     });
     
-
     const handleChange = (e) => {
         setFormValues({
             ...formValues,
@@ -32,6 +32,7 @@ export default function AddEvent() {
         })
         .catch(err => console.log({ err }))
     }
+
 
     return (
         <form onSubmit={handleSubmit}>
