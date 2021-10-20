@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ReactComponent as BannerIllustration } from "../../src/Images/Home-Page/events-illustration.svg";
+import { ReactComponent as BannerIllustration } from "../assets/Images/Home-Page/events-illustration.svg";
 
 const StyledBannerContainer = styled.div`
   display: flex;
