@@ -30,8 +30,16 @@ export default function PotluckItems() {
         })
     })
 
-    const handleDelete = () => {
-        axiosWithAuth().delete(``)
+    const deleteFood = (id) => {
+        setFoodItems(foodItems.filter(item => item.food_id !== +id))
+    }
+
+    const handleDelete = (id) => {
+        axiosWithAuth().delete(`/foods/${id}`)
+            .then(res => {
+                deleteFood(id)
+            })
+            .catch(err => console.log({ err }))
     }
 
     return (
@@ -49,17 +57,17 @@ export default function PotluckItems() {
                 id='food_description'
                 name='food_description'
                 value={itemFields.food_description}
-                onChange={e => handleChange( e)}
+                onChange={e => handleChange(e)}
              /> 
             
              <button>Add items</button>
         </form>
      <div className='foodContainer'>
-         {foodItems.map(item =>{
+         {foodItems.map(food =>{
              return (
                 <div >
-                 <p>{item.food_name}: {item.food_description}</p> 
-                 <button onClick={handleDelete}>remove item</button>
+                 <p>{food.food_name}: {food.food_description}</p> 
+                 <button onClick={() => {handleDelete(food.food_id)} }>remove item</button>
                 </div>
              )
          })}
