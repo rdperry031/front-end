@@ -12,7 +12,7 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import PrivateRoute from "./components/PrivateRoute";
-
+import PotluckItems from "./components/PotluckItems";
 
 
 
@@ -23,6 +23,12 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
+      <Route path="/potluckitems">
+          <PotluckItems/>
+        </Route>
+        <Route path="/add">
+          <AddEvent />
+        </Route>
         <Route path="/logout">
           <Logout />
         </Route>
@@ -40,9 +46,6 @@ function App() {
         </Route>
         <Route exact path="/">
           <Home />
-        </Route>
-        <Route path="/add">
-          <AddEvent />
         </Route>
         <Route path="/edit">
           <EditEvent />
