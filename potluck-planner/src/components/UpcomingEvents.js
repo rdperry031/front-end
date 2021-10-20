@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Event from './Event';
-import { useHistory } from "react-router";
+import EditEvent from './EditEvent';
 import axiosWithAuth from "../utilities/axiosWithAuth";
+import { useHistory } from 'react-router-dom';
 
 export default function UpcomingEvents() {
     const { push } = useHistory();
-    const initialPotlucks = [];
-    const [potlucks, setPotlucks] = useState(initialPotlucks)
-
-    const handleAdd = () => {
-        push("/add");
-      };
+    const [potlucks, setPotlucks] = useState([])
+    const [editing, setEditing] = useState(false);
+    const [editId, setEditId] = useState();
+  
 
     const getPotlucks = () => {
         axiosWithAuth()
@@ -28,19 +27,74 @@ export default function UpcomingEvents() {
         getPotlucks()
     }, [])
 
+    const deletePotluck = (id)=> {
+        setPotlucks(potlucks.filter(potluck=> potluck.potluck_id !== +id));
+    }
+
+    const handleDelete = (id) => {
+        axiosWithAuth()
+            .delete(`/potlucks/${id}`)
+            .then(resp=>{
+                deletePotluck(id);
+                // setPotlucks(resp.data);
+            })
+            .catch(err=> {
+                console.log(err.response)
+            });
+    }
+
+    // useEffect(()=> {
+    //     handleDelete()
+    // }, [])
+
+
+    const handleEdit = (potluck) => {
+        axiosWithAuth()
+            .put(`/potlucks/${editId}`, potluck)
+            .then((resp)=>{
+                setPotlucks(resp.data)
+                setEditing(!editing);
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+
+    const handleEditSelect = (id)=> {
+        setEditing(true);
+        setEditId(id);
+    }
+
+    const handleEditCancel = ()=>{
+        setEditing(false);
+    }
+
+    const handleAdd = () => {
+        push("/add");
+      };
+
+
+
     return (
         <div>
-            <button onClick={handleAdd}>
-                Create a Potluck Event.
-            </button>
-            <h3>Upcoming Potlucks</h3>
+            <div>
+                <button onClick={handleAdd}>
+                    Create a Potluck Event.
+                </button>
+                <h3>Upcoming Potlucks</h3>
+                {
+                    potlucks.map(potluck=> {
+                        return(<div key={potluck.potluck_id}>
+                            <Event potluck={potluck} handleDelete={handleDelete} handleEdit={handleEditSelect}/>
+                        </div>)
+                    })
+                }
+            </div>
+            <div>
             {
-                potlucks.map(potluck=> {
-                    return(<div key={potluck.id}>
-                        <Event potluck={potluck}/>
-                    </div>)
-                })
+                editing && <EditEvent editId={editId} handleEdit={handleEdit}  handleEditCancel={handleEditCancel}/>
             }
+            </div>
         </div>
     )
 }

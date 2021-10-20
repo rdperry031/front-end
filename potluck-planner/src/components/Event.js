@@ -1,21 +1,27 @@
-import React from 'react'
+import React from 'react';
+
 
 export default function Event(props) {
-    const { potluck } = props
+    
+    const { potluck, handleDelete, handleEdit } = props
 
     if (!potluck) {
         return <h3>Working on getting event information...</h3>
     }
     return (
         <div>
-            <h3>{potluck.potluck_name}</h3>
+            <h2>{potluck.potluck_name}</h2>
             <div>
                 <p>Location: {potluck.potluck_location}</p>
                 <p>Time: {potluck.potluck_time}</p>
                 <p>Date: {potluck.potluck_date}</p>
             </div>
             <p>{potluck.potluck_description}</p>
-            <button>Edit Event</button>
+            <div>
+                <button onClick={handleDelete}>Delete Event</button>
+                <button onClick={handleEdit(potluck.potluck_id)}>Edit Event</button>
+            </div>
+            
         </div>
     )
 }
