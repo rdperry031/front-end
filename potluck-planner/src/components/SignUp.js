@@ -20,13 +20,22 @@ import formSchema from "../Validation/SignUp&Login/signup&login";
 
 
 const StyledSignUp = styled.div`
-margin: 0 auto;
-margin-top: 5%;
-margin-bottom: 5%;
-padding: 4% 3%;
-width: 40%;
-border-radius: 0.5rem;
-box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  height: calc(100vh - 210px);
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+form{
+  margin: 0 auto;
+  padding: 4% 3%;
+  height: max-content;
+  max-width: 750px;
+  width: 40%;
+  border-radius: 0.5rem;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+
+}
 
 input{
   margin-bottom: 1rem;
@@ -50,12 +59,15 @@ button{
 
 
 @media (max-width: 1000px){
+  form{
   width: 70%;
+  }
 }
 
 @media (max-width: 768px){
+  form{
   width: 85%;
-  margin-top: 3rem;
+  }
 }
 `
 
@@ -126,8 +138,9 @@ export default function SignUp() {
 
     return (
         <StyledSignUp>
-          <h2>Sign Up</h2>
+          
         <Form onSubmit={userSignUp}>
+        <h2>Sign Up</h2>
           <FormGroup>
           <Label for="username">Username:</Label>
             <Input

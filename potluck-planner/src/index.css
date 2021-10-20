@@ -63,4 +63,7 @@ body {
   font-family: "Spartan", sans-serif;
   background-color: var(--primary-color);
   color: var(--main-text-color);
+  display: flex;
+  flex-direction: column;
 }
+
