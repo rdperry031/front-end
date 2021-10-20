@@ -1,8 +1,51 @@
-# Getting Started with Create React App
+# Getting Started Poltluck Planner
+![image](../Assets/images/Login-background.jpg)
+
+
+- [Getting Started Poltluck Planner](#getting-started-poltluck-planner)
+  - [About](#about)
+  - [Language](#language)
+  - [Contributors](#contributors)
+  - [Fast Instructions fro running this project](#fast-instructions-fro-running-this-project)
+  - [General Instructions for React Apps](#general-instructions-for-react-apps)
+    - [`npm start`](#npm-start)
+    - [`npm test`](#npm-test)
+    - [`npm run build`](#npm-run-build)
+    - [`npm run eject`](#npm-run-eject)
+  - [Learn More](#learn-more)
+    - [Code Splitting](#code-splitting)
+    - [Analyzing the Bundle Size](#analyzing-the-bundle-size)
+    - [Making a Progressive Web App](#making-a-progressive-web-app)
+    - [Advanced Configuration](#advanced-configuration)
+    - [Deployment](#deployment)
+    - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## About 
+Tired of getting too many chips and not enought meats at your Pot Luck? No Worries, our app helps you create potlucks, invite guests and ensure no duplicate foods. 
+
+## Language
+We love JavaScript and React makes it easy. We are thrilled with Redux and the reducer pattern as part of our code design. The use of these tools enables follow up developers a base with which to scale up as needed. 
+
+## Contributors
+- Rick Mansfield [Lead Backend Developer](https://rickmansfield.github.io/PortfolioWRM2021v2/)
+- Jared Hall [Full Stack Web Dev & Computer Science Engineer]()
+- Richard Perry [Full Stack Web Dev & Computer Science Engineer]()
+- Collyn Godlewski [Frontend Development REACT/SPA's & Design]()
+- Erik Bahena [Frontend Development REACT/SPA's & Design]()
+
+## Fast Instructions fro running this project
+  - You need React and Node.js on your local environment. 
+  - clone project
+  - in terminal ```npm install```
+  - then ```npm start```
+  - find all necesssary imports at the top of each file. Be sure you load...
+    -  npm i Yup
+    -  npm i styled-components
+    -  npm i axios
+  - Above all Have Fun!
+## General Instructions for React Apps
 
 In the project directory, you can run:
 
