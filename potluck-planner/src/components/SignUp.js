@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router";
+import * as yup from 'yup';
 
 // Styling
 import "bootstrap/dist/css/bootstrap.css";
@@ -13,6 +14,10 @@ import {
   Button,
 } from "reactstrap";
 import styled from "styled-components";
+
+// FormSchema for Validation
+import formSchema from "../Validation/SignUp&Login/signup&login";
+
 
 const StyledSignUp = styled.div`
 margin: 0 auto;
@@ -57,6 +62,13 @@ button{
 
 
 
+const initialFormErrors = {
+  username: '',
+  password: ''
+}
+
+
+
 
 export default function SignUp() {
     const [form, setForm] = useState({
@@ -66,11 +78,21 @@ export default function SignUp() {
         },
       });
 
+      //Disabled
+      const [disabled, setDisabled] = useState(true);
+      //Errors
+      const [formErrors, setFormErrors] = useState(initialFormErrors);
+
     const { push } = useHistory();
     
     const handleChange = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+
+      validate(name, value);
+      
         setForm({
-          credentials: { ...form.credentials, [e.target.name]: e.target.value },
+          credentials: { ...form.credentials, [name]: value },
         });
     };
 
@@ -88,6 +110,20 @@ export default function SignUp() {
           });
       };
 
+       // Validation
+
+    useEffect(() => {
+      formSchema.isValid(form.credentials).then((valid) => setDisabled(!valid));
+    }, [form.credentials]);
+  
+    const validate = (name, value) => {
+      yup
+        .reach(formSchema, name)
+        .validate(value)
+        .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+        .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
+    };
+
     return (
         <StyledSignUp>
           <h2>Sign Up</h2>
@@ -97,19 +133,39 @@ export default function SignUp() {
             <Input
               type="text"
               name="username"
-              value={form.username}
+              value={form.credentials.username}
               onChange={handleChange}
+              invalid={!!formErrors.username}
+    
+              valid={
+                formErrors.username !== ""
+                  ? false
+                  : form.credentials.username
+                  ? true
+                  : false
+              }
             />
+            <FormFeedback>{formErrors.username}</FormFeedback>
+            
          
           <Label>Password:</Label>
             <Input
               type="password"
               name="password"
-              value={form.password}
+              value={form.credentials.password}
               onChange={handleChange}
+              invalid={!!formErrors.password}
+              valid={
+                formErrors.password !== ""
+                  ? false
+                  : form.credentials.password
+                  ? true
+                  : false
+              }
             />
+            <FormFeedback>{formErrors.password}</FormFeedback>
           </FormGroup>
-          <Button>Login</Button>
+          <Button disabled={disabled}>Login</Button>
         </Form>
         </StyledSignUp>
     )

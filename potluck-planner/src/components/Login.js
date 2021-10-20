@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useHistory } from "react-router";
 import axiosWithAuth from '../utilities/axiosWithAuth';
+import * as yup from 'yup';
+
+// FormSchema for Validation
+import formSchema from "../Validation/SignUp&Login/signup&login";
+
 
 // Styling
 import "bootstrap/dist/css/bootstrap.css";
@@ -52,12 +57,14 @@ const StyledLogin = styled.div`
     width: 85%;
     margin-top: 3rem;
   }
+
+
 `
 
-
-
-
-
+const initialFormErrors = {
+  username: '',
+  password: ''
+}
 
 
 export default function Login(props) {
@@ -68,11 +75,21 @@ export default function Login(props) {
       },
     });
 
+    // Disabled
+    const [disabled, setDisabled] = useState(true);
+    // Errors
+    const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+
     const { push } = useHistory();
 
     const handleChange = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+
+      validate(name, value);
       setState({
-        credentials: { ...state.credentials, [e.target.name]: e.target.value },
+        credentials: { ...state.credentials, [name]: value },
       });
     };
   //   console.log(state);
@@ -87,6 +104,20 @@ export default function Login(props) {
         .catch((err) => {
           console.log(err);
         });
+    };
+
+    // Validation
+
+    useEffect(() => {
+      formSchema.isValid(state.credentials).then((valid) => setDisabled(!valid));
+    }, [state.credentials]);
+  
+    const validate = (name, value) => {
+      yup
+        .reach(formSchema, name)
+        .validate(value)
+        .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+        .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
     };
 
   return (
@@ -105,17 +136,17 @@ export default function Login(props) {
             name="username"
             value={state.credentials.username}
 
-            // invalid={!!errors.first_name}
-            // // if the error is an not an empty string then valid=false, if the error is an empty string then check if the value is empty or not, if the value is empty then valid = false, if the value is not empty then the valid=true
-            // valid={
-            //   errors.first_name !== ""
-            //     ? false
-            //     : values.first_name
-            //     ? true
-            //     : false
-            // }
+            invalid={!!formErrors.username}
+    
+            valid={
+              formErrors.username !== ""
+                ? false
+                : state.credentials.username
+                ? true
+                : false
+            }
           />
-          <FormFeedback>Name is invalid</FormFeedback>
+          <FormFeedback>{formErrors.username}</FormFeedback>
         </FormGroup>
 
  
@@ -126,22 +157,22 @@ export default function Login(props) {
               type="password"
               id="password"
               name="password"
-              value={state.password}
-              // // invalid=true if the error string is not empty, invalid=false if the error string is empty
-              // invalid={!!errors.password}
-              // // if the error is an not an empty string then valid=false, if the error is an empty string then check if the value is empty or not, if the value is empty then valid = false, if the value is not empty then the valid=true
-              // valid={
-              //   errors.password !== ""
-              //     ? false
-              //     : values.password
-              //     ? true
-              //     : false
-              // }
+              value={state.credentials.password}
+              // invalid=true if the error string is not empty, invalid=false if the error string is empty
+              invalid={!!formErrors.password}
+              // if the error is an not an empty string then valid=false, if the error is an empty string then check if the value is empty or not, if the value is empty then valid = false, if the value is not empty then the valid=true
+              valid={
+                formErrors.password !== ""
+                  ? false
+                  : state.credentials.password
+                  ? true
+                  : false
+              }
             />
-            {/* <FormFeedback>{errors.first_name}</FormFeedback> */}
+            <FormFeedback>{formErrors.password}</FormFeedback>
           </FormGroup>
 
-          <Button>Login</Button>
+          <Button disabled={disabled}>Login</Button>
         </Form>
 
 

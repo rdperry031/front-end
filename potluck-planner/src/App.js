@@ -13,14 +13,10 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import PrivateRoute from "./components/PrivateRoute";
 
-import formSchema from "./Validation/SignUp&Login/signup&login";
 
 
 
-const initialErrorValues = {
-  username: '',
-  password: ''
-}
+
 
 function App() {
   return (
