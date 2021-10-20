@@ -4,16 +4,15 @@ import axiosWithAuth from '../utilities/axiosWithAuth';
 
 export default function PotluckItems() {
 
-    const [ itemFields, setItemFields ] = useState({food_name: '', food_description:''})
-    
-    const handleChange = ( e) =>{
+    const [ itemFields, setItemFields ] = useState({food_name: '', food_description:''});
+    const [ foodItems, setFoodItems ] = useState([]);
+
+    const handleChange = (e) =>{
         setItemFields({
             ...itemFields, 
             [e.target.name]: e.target.value
         })
     }
-
-    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,13 +26,17 @@ export default function PotluckItems() {
     useEffect(() => {
         axiosWithAuth().get(`/foods`)
         .then(res => {
-            console.log(res)
+            setFoodItems(res.data)
         })
     })
 
+    const handleDelete = () => {
+        axiosWithAuth().delete(``)
+    }
+
     return (
+    <div>
         <form onSubmit={handleSubmit}>
-          
             <label htmlFor='food_name'>Item</label>
              <input
                 id='food_name'
@@ -51,5 +54,16 @@ export default function PotluckItems() {
             
              <button>Add items</button>
         </form>
+     <div className='foodContainer'>
+         {foodItems.map(item =>{
+             return (
+                <div >
+                 <p>{item.food_name}: {item.food_description}</p> 
+                 <button onClick={handleDelete}>remove item</button>
+                </div>
+             )
+         })}
+     </div>
+    </div>
     )
 }
