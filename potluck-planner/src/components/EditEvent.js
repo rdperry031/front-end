@@ -12,7 +12,6 @@ export default function AddEvent() {
         potluck_date: '',
         potluck_time: '',
         potluck_location: '',
-        food:''
     });
     
     useEffect(() => {
