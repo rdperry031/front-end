@@ -4,9 +4,23 @@ import styled from "styled-components";
 
 import { ReactComponent as BannerIllustration } from "../assets/Images/Home-Page/events-illustration.svg";
 
+
 const StyledBannerContainer = styled.div`
+
   display: flex;
   justify-content: center;
+  height: 100%;
+
+
+
+  @media (min-height:920px){
+    height: calc(100vh - 210px);
+  }
+
+  @media (max-width: 1300px){
+    margin-bottom: 2rem;
+
+  }
 
   .banner-text-container {
     padding: 4.5rem 15% 0rem 5%;
@@ -99,9 +113,10 @@ const StyledBannerContainer = styled.div`
 `;
 
 export default function Home() {
+
   return (
     <>
-      <StyledBannerContainer>
+      <StyledBannerContainer className="responsive">
         <div className="banner-text-container">
           <h1>Potluck Planner</h1>
 
