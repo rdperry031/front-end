@@ -7,10 +7,7 @@ import { useHistory } from 'react-router-dom';
 export default function UpcomingEvents() {
     const { push } = useHistory();
     const [potlucks, setPotlucks] = useState([])
-    const [editing, setEditing] = useState(false);
-    const [editId, setEditId] = useState();
   
-
     const getPotlucks = () => {
         axiosWithAuth()
             .get("/potlucks")
@@ -36,44 +33,15 @@ export default function UpcomingEvents() {
             .delete(`/potlucks/${id}`)
             .then(resp=>{
                 deletePotluck(id);
-                // setPotlucks(resp.data);
             })
             .catch(err=> {
                 console.log(err.response)
             });
     }
 
-    // useEffect(()=> {
-    //     handleDelete()
-    // }, [])
-
-
-    const handleEdit = (potluck) => {
-        axiosWithAuth()
-            .put(`/potlucks/${editId}`, potluck)
-            .then((resp)=>{
-                setPotlucks(resp.data)
-                setEditing(!editing);
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-    }
-
-    const handleEditSelect = (id)=> {
-        setEditing(true);
-        setEditId(id);
-    }
-
-    const handleEditCancel = ()=>{
-        setEditing(false);
-    }
-
     const handleAdd = () => {
         push("/add");
       };
-
-
 
     return (
         <div>
@@ -85,15 +53,10 @@ export default function UpcomingEvents() {
                 {
                     potlucks.map(potluck=> {
                         return(<div key={potluck.potluck_id}>
-                            <Event potluck={potluck} handleDelete={handleDelete} handleEdit={handleEditSelect}/>
+                            <Event potluck={potluck} handleDelete={()=>{handleDelete(potluck.potluck_id)}}/>
                         </div>)
                     })
                 }
-            </div>
-            <div>
-            {
-                editing && <EditEvent editId={editId} handleEdit={handleEdit}  handleEditCancel={handleEditCancel}/>
-            }
             </div>
         </div>
     )

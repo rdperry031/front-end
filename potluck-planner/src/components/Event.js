@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Event(props) {
     
-    const { potluck, handleDelete, handleEdit } = props
+    const { potluck, handleDelete, handleEditSelect } = props
 
     if (!potluck) {
         return <h3>Working on getting event information...</h3>
@@ -19,7 +19,7 @@ export default function Event(props) {
             <p>{potluck.potluck_description}</p>
             <div>
                 <button onClick={handleDelete}>Delete Event</button>
-                <button onClick={handleEdit(potluck.potluck_id)}>Edit Event</button>
+                <button>Edit Event</button>
             </div>
             
         </div>
