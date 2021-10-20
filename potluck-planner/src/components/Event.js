@@ -1,0 +1,21 @@
+import React from 'react'
+
+export default function Event(props) {
+    const { potluck } = props
+
+    if (!potluck) {
+        return <h3>Working on getting event information...</h3>
+    }
+    return (
+        <div>
+            <h3>{potluck.potluck_name}</h3>
+            <div>
+                <p>Location: {potluck.potluck_location}</p>
+                <p>Time: {potluck.potluck_time}</p>
+                <p>Date: {potluck.potluck_date}</p>
+            </div>
+            <p>{potluck.potluck_description}</p>
+            <button>Edit Event</button>
+        </div>
+    )
+}
