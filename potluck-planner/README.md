@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# Getting Started Poltluck Planner
 ![image](../Assets/images/Login-background.jpg)
 
 
-- [Getting Started with Create React App](#getting-started-with-create-react-app)
+- [Getting Started Poltluck Planner](#getting-started-poltluck-planner)
   - [About](#about)
   - [Language](#language)
   - [Contributors](#contributors)
