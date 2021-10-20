@@ -6,25 +6,24 @@ import styled from 'styled-components';
 
 
 const Line = styled.hr`
-    
-    // margin-left: 15%;
     display: block;
     height: 1px;
     border: 0;
     border-top: 1px solid black;
+    
 `
 
 
 
 const StyledFooter = styled.div`
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-   
     background-color:  var(--white);
     padding-top: 0;
     padding-bottom: 0;
     text-align: right;
-    // padding-right: 15%;
+    box-shadow: 0 -5px 2px -5px #333;
+    
    
     height: calc(var(--nav-height)*2);
         a{
@@ -33,7 +32,6 @@ const StyledFooter = styled.div`
             display:inline-block;
             text-decoration:none;
             color: black;
-
         }
 
     .footerLinks{

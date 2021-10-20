@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
     height: var(--nav-height);
     width: 100%;
     background-color: var(--secondary-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
     .home-link {
       text-decoration: none;
@@ -18,6 +19,12 @@ const StyledHeader = styled.header`
 
     h2 {
       margin-left: 3rem;
+      -webkit-transition: 0.5s;
+
+      &:hover{
+        color: var(--white);
+        -webkit-transform-origin: 0% 100%;
+      }
     }
 
     .mobile-nav-links-container,
@@ -41,6 +48,12 @@ const StyledHeader = styled.header`
 
       a:nth-of-type(1) {
         margin-right: 2rem;
+        -webkit-transition: 0.5s;
+
+        &:hover {
+          color: var(--white);
+          -webkit-transform-origin: 0% 100%;
+        }
       }
 
       a:nth-of-type(2) {

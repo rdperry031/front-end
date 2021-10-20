@@ -61,4 +61,5 @@ body {
   font-family: "Spartan", sans-serif;
   background-color: var(--primary-color);
   color: var(--main-text-color);
+  margin: 0 auto;
 }
