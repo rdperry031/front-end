@@ -1,5 +1,5 @@
 # Getting Started Poltluck Planner
-![image](../Assets/images/Login-background.jpg)
+![image](../potluck-planner/src/assets/Images/Login-background.jpg)
 
 
 - [Getting Started Poltluck Planner](#getting-started-poltluck-planner)
