@@ -1,63 +1,106 @@
-import React, { useEffect, useState } from 'react';
-import Event from './Event';
-import EditEvent from './EditEvent';
+import React, { useEffect, useState } from "react";
+import Event from "./Event";
+import EditEvent from "./EditEvent";
 import axiosWithAuth from "../utilities/axiosWithAuth";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+
+// Styling
+import styled from "styled-components";
+import "bootstrap/dist/css/bootstrap.css";
+import { Button } from "reactstrap";
 
 export default function UpcomingEvents() {
-    const { push } = useHistory();
-    const [potlucks, setPotlucks] = useState([])
-  
-    const getPotlucks = () => {
-        axiosWithAuth()
-            .get("/potlucks")
-            .then(res => {
-                console.log(res.data);
-                setPotlucks(res.data);
-            })
-            .catch((err) => {
-                console.log(err.response);
-              });
+  const { push } = useHistory();
+  const [potlucks, setPotlucks] = useState([]);
+
+  const getPotlucks = () => {
+    axiosWithAuth()
+      .get("/potlucks")
+      .then((res) => {
+        setPotlucks(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  useEffect(() => {
+    getPotlucks();
+  }, []);
+
+  const deletePotluck = (id) => {
+    setPotlucks(potlucks.filter((potluck) => potluck.potluck_id !== +id));
+  };
+
+  const handleDelete = (id) => {
+    axiosWithAuth()
+      .delete(`/potlucks/${id}`)
+      .then((resp) => {
+        deletePotluck(id);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const handleAdd = () => {
+    push("/add");
+  };
+
+  //   Styling
+  const StyledUpcomingEvents = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      text-align: center;
+      margin-top: 5%;
     }
 
-    useEffect(()=> {
-        getPotlucks()
-    }, [])
+    .events-container {
+      display: flex;
 
-    const deletePotluck = (id)=> {
-        setPotlucks(potlucks.filter(potluck=> potluck.potluck_id !== +id));
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 90%;
+      margin: 0 auto;
     }
 
-    const handleDelete = (id) => {
-        axiosWithAuth()
-            .delete(`/potlucks/${id}`)
-            .then(resp=>{
-                deletePotluck(id);
-            })
-            .catch(err=> {
-                console.log(err.response)
-            });
+    .createNew {
+      background-color: var(--accent-color);
+      border: none;
+      width: max-content;
+      margin-bottom: 2rem;
+      &:hover {
+        background-color: var(--accent-color-dark);
+      }
     }
+  `;
 
-    const handleAdd = () => {
-        push("/add");
-      };
+  return (
+    <StyledUpcomingEvents>
+      <h1>Upcoming Potlucks</h1>
 
-    return (
-        <div>
-            <div>
-                <button onClick={handleAdd}>
-                    Create a Potluck Event.
-                </button>
-                <h3>Upcoming Potlucks</h3>
-                {
-                    potlucks.map(potluck=> {
-                        return(<div key={potluck.potluck_id}>
-                            <Event potluck={potluck} handleDelete={()=>{handleDelete(potluck.potluck_id)}}/>
-                        </div>)
-                    })
-                }
-            </div>
-        </div>
-    )
+      <div className="events-container">
+        {potlucks.map((potluck) => {
+          return (
+            <Event
+              key={potluck.potluck_id}
+              potluck={potluck}
+              handleDelete={() => {
+                handleDelete(potluck.potluck_id);
+              }}
+            />
+          );
+        })}
+      </div>
+
+      <Button className="createNew" onClick={handleAdd}>
+        Create a New Potluck Event
+      </Button>
+    </StyledUpcomingEvents>
+  );
 }
