@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Jumbotron, Button } from "reactstrap";
+import { Link } from 'react-router-dom'
 
 const StyledEvent = styled.div`
   width: max-content;
@@ -83,6 +84,9 @@ export default function Event(props) {
           <Button onClick={handleDelete} color="danger">
             Delete
           </Button>
+          <Link to={`/upcomingevents/${potluck.potluck_id}`}>
+            <Button type='button'>View Event</Button>
+          </Link>
         </div>
       </Jumbotron>
     </StyledEvent>
