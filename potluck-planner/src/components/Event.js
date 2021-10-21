@@ -50,10 +50,12 @@ export default function Event(props) {
   const formatTime = (time) => {
     const hour = time.slice(0, 2);
     const minutes = time.slice(3, 5);
-    const pmOrAm = hour > 12 ? "PM" : "AM";
-    const base12Hour = hour > 12 ? hour - 12 : hour;
+    const timeString = new Date(0, 0, 0, hour, minutes);
 
-    return `${base12Hour}:${minutes} ${pmOrAm}`;
+    return timeString.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   };
 
   let formattedDate = formatDate(potluck.potluck_date.slice(0, 10));
