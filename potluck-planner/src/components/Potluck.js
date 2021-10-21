@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../utilities/axiosWithAuth';
-// import { useParams } from 'react-router';
+import { useParams } from 'react-router';
+import PotluckItems from './PotluckItems';
 
 export default function Potluck() {
-    // const{id} = useParams();
+    const{id} = useParams();
     
     
     const[potluckName, setPotluckName] = useState([]);
@@ -12,7 +13,7 @@ export default function Potluck() {
     
    
     const getPotluckName = () => {
-        axiosWithAuth().get(`/potlucks/41`)
+        axiosWithAuth().get(`/potlucks/${id}`)
             .then(res => {
                 setPotluckName(res.data)
             })
@@ -20,7 +21,7 @@ export default function Potluck() {
     }
    
     const getPotluck = () => {
-        axiosWithAuth().get(`/potlucks/41`)
+        axiosWithAuth().get(`/potlucks/${id}`)
             .then(res => {
                 setPotluck(res.data.details)
             })
@@ -48,13 +49,7 @@ export default function Potluck() {
             {potluck.potluck_time}<br/>
         {potluck.potluck_location}</p> }
                 <h2>Food:</h2>
-               {foodItems.map(food =>{
-             return (
-                <div key={food.food_id}>
-                 <p>{food.food_name}: {food.food_description}</p> 
-                </div>
-             )
-         })}
+               <PotluckItems/>
         </div>
     )
 }
