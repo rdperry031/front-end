@@ -1,14 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import rick from "../assets/Images/MeetTeam/rick.png"
-import collyn from "../assets/Images/MeetTeam/Collyn.jpeg"
-import erik from "../assets/Images/MeetTeam/erik.png"
-import richard from "../assets/Images/MeetTeam/richard.jpg"
-import jared from "../assets/Images/MeetTeam/jared.jpg"
-
-
-
-
+import rick from "../assets/Images/MeetTeam/rick.png";
+import collyn from "../assets/Images/MeetTeam/Collyn.jpeg";
+import erik from "../assets/Images/MeetTeam/erik.png";
+import richard from "../assets/Images/MeetTeam/richard.jpg";
+import jared from "../assets/Images/MeetTeam/jared.jpg";
 
 const StyledTeam = styled.div`
   display: flex;
@@ -16,61 +12,49 @@ const StyledTeam = styled.div`
   align-items: center;
   justify-content: center;
 
-
-@media (max-width: 550px){
-  .cardsContainer{
-
-    .card{
-        img{
+  @media (max-width: 550px) {
+    .cardsContainer {
+      .card {
+        img {
           -webkit-filter: grayscale(0%);
 
-          &:hover{ 
+          &:hover {
             filter: none;
             transform: none;
-           }
+          }
         }
+      }
     }
-}
+  }
 
-}
-
-
-
-
-  @media (min-height:700px){
+  @media (min-height: 700px) {
     height: calc(100vh - 210px);
   }
 
-
-    @media (max-width: 2070px){
-        .cardsContainer{
-
-            .card{
-              
-                img{
-                  height: 200px;
-                  width: 200px;
-                }
-            }
+  @media (max-width: 2070px) {
+    .cardsContainer {
+      .card {
+        img {
+          height: 200px;
+          width: 200px;
         }
+      }
     }
+  }
 
-    
-    @media (max-width: 1330px){
-        .cardsContainer{
-
-            .card{
-               h2{
-                   white-space: nowrap;
-               }
-                img{
-                  height: 100px;
-                  width: 100px;
-                }
-            }
+  @media (max-width: 1330px) {
+    .cardsContainer {
+      .card {
+        h2 {
+          white-space: nowrap;
         }
+        img {
+          height: 100px;
+          width: 100px;
+        }
+      }
     }
-  
+  }
 
   @media (max-width: 550px) {
     height: 100%;
@@ -85,13 +69,6 @@ const StyledTeam = styled.div`
         height: max-content;
       }
     }
-
-  
-
-
-
-
-
   }
 `;
 
@@ -184,51 +161,31 @@ export default function Team() {
       <div></div>
       <StyledCards className="cardsContainer">
         <div className="card">
-        <img
-            classNames="card-photo"
-            src={richard}
-            alt="Photo of Richard Perry"
-          />
+          <img classNames="card-photo" src={richard} alt="Richard Perry" />
           <h2>Richard Perry</h2>
           <p>Frontend Development</p>
         </div>
 
         <div className="card">
-          <img
-            classNames="card-photo"
-            src={jared}
-            alt="Photo of Jared Hall"
-          />
+          <img classNames="card-photo" src={jared} alt="Jared Hall" />
           <h2>Jared Hall</h2>
           <p>Frontend Development</p>
         </div>
 
         <div className="card">
-          <img
-            className="card-photo"
-            src={rick}
-            alt="Photo of Rick Mansfield"
-          />
+          <img className="card-photo" src={rick} alt=" Rick Mansfield" />
           <h2>Rick Mansfield</h2>
           <p>Backend Development</p>
         </div>
 
         <div className="card">
-          <img
-            className="card-photo"
-            src={erik}
-            alt="Photo of Erik Bahena"
-          />
+          <img className="card-photo" src={erik} alt=" Erik Bahena" />
           <h2>Erik Bahena</h2>
           <p>Frontend Development</p>
         </div>
 
         <div className="card">
-          <img
-            className="card-photo"
-            src={collyn}
-            alt="Photo of Collyn Godlewski"
-          />
+          <img className="card-photo" src={collyn} alt=" Collyn Godlewski" />
           <h2>Collyn Godlewski</h2>
           <p>Frontend Development</p>
         </div>
