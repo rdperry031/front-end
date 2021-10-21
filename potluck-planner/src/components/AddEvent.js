@@ -96,7 +96,7 @@ export default function AddEvent() {
       .post(`/potlucks`, formValues)
       .then((res) => {
         console.log(res);
-        push("/upcomingevents");
+        push("/potluckitems");
       })
       .catch((err) => console.log({ err }));
   };

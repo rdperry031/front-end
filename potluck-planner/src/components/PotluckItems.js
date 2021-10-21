@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utilities/axiosWithAuth';
-
+import { Link } from 'react-router-dom';
 
 export default function PotluckItems() {
 
@@ -71,6 +71,9 @@ export default function PotluckItems() {
                 </div>
              )
          })}
+         <Link to='/upcomingevents'>
+             <button type='button'>Confirm Items</button>
+         </Link>
      </div>
     </div>
     )
