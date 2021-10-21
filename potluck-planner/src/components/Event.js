@@ -34,7 +34,7 @@ const StyledEvent = styled.div`
 `;
 
 export default function Event(props) {
-  const { potluck, handleDelete, handleEditSelect } = props;
+  const { potluck, handleDelete } = props;
 
   const options = { month: "long", day: "numeric", year: "numeric" };
 
@@ -80,7 +80,9 @@ export default function Event(props) {
         <hr className="my-3" />
         <p>Edit or Delete this event</p>
         <div className="buttons-container">
-          <Button color="primary">Edit</Button>
+          <Link to={`/edit/${potluck.potluck_id}`}>
+            <Button color="primary">Edit</Button>
+          </Link>
           <Button onClick={handleDelete} color="danger">
             Delete
           </Button>

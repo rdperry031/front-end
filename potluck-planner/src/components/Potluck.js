@@ -9,7 +9,6 @@ export default function Potluck() {
     
     const[potluckName, setPotluckName] = useState([]);
     const[potluck, setPotluck] = useState([]);
-    const[foodItems, setFoodItems] = useState([]);
     
    
     const getPotluckName = () => {
@@ -31,16 +30,7 @@ export default function Potluck() {
         getPotluck();
         getPotluckName()
     },[])
-
-     useEffect(() => {
-         axiosWithAuth().get(`/foods`)
-            .then(res => {
-                setFoodItems(res.data)
-            })
-            .catch(err => console.log({ err }))
-     }, [])
     
-
     return (
         <div>
             {<h1>{potluckName.potluck_name}</h1> }
