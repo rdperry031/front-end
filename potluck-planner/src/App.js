@@ -49,7 +49,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/edit">
+        <Route path="/edit/:id">
           <EditEvent />
         </Route>
       </Switch>
