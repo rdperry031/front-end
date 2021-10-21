@@ -16,26 +16,18 @@ import PotluckItems from "./components/PotluckItems";
 import Potluck from './components/Potluck'
 
 
-
 function App() {
   return (
     <div className="App">
       <Header />
       <Switch>
-       <Route path='/upcomingevents/:id'>
-          <Potluck/>
-       </Route>
-       <Route path="/potluckitems">
-          <PotluckItems/>
-        </Route>
-        <Route path="/add">
-          <AddEvent />
-        </Route>
+       <PrivateRoute path="/edit/:id" component={EditEvent}/>
+       <PrivateRoute path='/upcomingevents/:id' component={Potluck}/>
+       <PrivateRoute path="/potluckitems" component={PotluckItems}/>
+       <PrivateRoute path="/add"component={AddEvent}/>
+       <PrivateRoute path="/upcomingevents" component={UpcomingEvents}/>
         <Route path="/logout">
           <Logout />
-        </Route>
-        <Route path="/upcomingevents">
-          <UpcomingEvents />
         </Route>
         <Route path="/login">
           <Login />
@@ -48,9 +40,6 @@ function App() {
         </Route>
         <Route exact path="/">
           <Home />
-        </Route>
-        <Route path="/edit/:id">
-          <EditEvent />
         </Route>
       </Switch>
       <Footer />
