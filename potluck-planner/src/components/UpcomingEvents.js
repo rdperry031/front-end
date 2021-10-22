@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Event from "./Event";
-import EditEvent from "./EditEvent";
 import axiosWithAuth from "../utilities/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 

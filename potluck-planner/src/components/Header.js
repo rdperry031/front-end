@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
-import { useLogoutButton } from "../Hooks/useLogoutButton";
+
 
 const StyledHeader = styled.header`
   nav {
@@ -166,7 +166,6 @@ export default function Header({ loggedIn, setLoggedIn }) {
 
   const [isDesktop, setDesktop] = useState(window.innerWidth > 768);
 
-  const [logout, setLogout] = useLogoutButton([false])
 
   const updateMedia = () => {
     setDesktop(window.innerWidth > 768);
@@ -177,14 +176,6 @@ export default function Header({ loggedIn, setLoggedIn }) {
 
     return () => window.removeEventListener("resize", updateMedia);
   });
-
-   let token = localStorage.getItem('token');
-  
-   
-   useEffect(() => {
-     token !== null ? setLogout(true) : setLogout(false);
-   },[setLogout, token])
-   
    
    const toggleNav = () => {
      setNavOpen((prev) => !prev);
@@ -219,7 +210,7 @@ export default function Header({ loggedIn, setLoggedIn }) {
           {loggedIn ? (
             <NavLink
               exact
-              to="/"
+              to="/logout"
               activeStyle={{
                 fontWeight: "bold",
                 color: "var(--white)",
