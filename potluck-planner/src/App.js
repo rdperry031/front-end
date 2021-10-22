@@ -1,4 +1,4 @@
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 import React, { useState } from "react";
 
 import Home from "./components/Home";
@@ -17,14 +17,12 @@ import Potluck from "./components/Potluck";
 
 
 function App() {
+  let token = localStorage.getItem('token')
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className="App">
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-
-      <Switch>
-
-
+  <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} token={token} />
+    <Switch>
        <PrivateRoute path="/edit/:id" component={EditEvent}/>
        <PrivateRoute path='/upcomingevents/:id' component={Potluck}/>
        <PrivateRoute path="/potluckitems" component={PotluckItems}/>
@@ -41,7 +39,8 @@ function App() {
           <Team />
         </Route>
         <Route path="/signup">
-          <SignUp />
+          {token !== null ? <Redirect to='/upcomingevents'/>
+          : <SignUp /> }
         </Route>
         <Route exact path="/">
           <Home />
