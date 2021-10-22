@@ -159,7 +159,7 @@ const StyledHeader = styled.header`
 `;
 
 
-export default function Header({ loggedIn, setLoggedIn }) {
+export default function Header({ loggedIn, setLoggedIn, token }) {
   
 
   const [navOpen, setNavOpen] = useState(false);
@@ -177,6 +177,10 @@ export default function Header({ loggedIn, setLoggedIn }) {
     return () => window.removeEventListener("resize", updateMedia);
   });
    
+  useEffect(() => {
+    token !== null ? setLoggedIn(true) : setLoggedIn(false)
+  },[setLoggedIn, token])
+
    const toggleNav = () => {
      setNavOpen((prev) => !prev);
     };
@@ -233,7 +237,7 @@ export default function Header({ loggedIn, setLoggedIn }) {
             </NavLink>
           )}
 
-         
+         {!loggedIn  ? (
           <NavLink
             to="/signup"
             activeStyle={{
@@ -244,6 +248,7 @@ export default function Header({ loggedIn, setLoggedIn }) {
           >
             Sign Up
           </NavLink>
+            ) : null}
         </div>
 
         <div onClick={toggleNav} className="mobile-nav-menu-btn">
@@ -295,7 +300,7 @@ export default function Header({ loggedIn, setLoggedIn }) {
               Login
             </NavLink>
           )}
-
+          {!loggedIn ? (
           <NavLink
             onClick={toggleNav}
             to="/signup"
@@ -307,6 +312,7 @@ export default function Header({ loggedIn, setLoggedIn }) {
           >
             Sign Up
           </NavLink>
+          ) : null}
         </div>
       </nav>
     </StyledHeader>
