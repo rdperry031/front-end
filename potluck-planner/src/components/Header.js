@@ -10,7 +10,8 @@ const StyledHeader = styled.header`
     height: var(--nav-height);
     width: 100%;
     background-color: var(--secondary-color);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
     .home-link {
       text-decoration: none;
@@ -21,7 +22,7 @@ const StyledHeader = styled.header`
       margin-left: 3rem;
       -webkit-transition: 0.5s;
 
-      &:hover{
+      &:hover {
         color: var(--white);
         -webkit-transform-origin: 0% 100%;
       }
@@ -37,6 +38,7 @@ const StyledHeader = styled.header`
       display: flex;
       align-items: center;
       justify-content: center;
+      height: max-content;
       margin-right: 3rem;
 
       a {
@@ -57,7 +59,17 @@ const StyledHeader = styled.header`
       }
 
       a:nth-of-type(2) {
-        padding: 5% 10%;
+        margin-right: 2rem;
+        -webkit-transition: 0.5s;
+
+        &:hover {
+          color: var(--white);
+          -webkit-transform-origin: 0% 100%;
+        }
+      }
+
+      .signupLink {
+        padding: 0.6rem 1rem;
         border: 1px solid black;
         -webkit-transition: 0.5s;
 
@@ -96,7 +108,7 @@ const StyledHeader = styled.header`
   .nav-mobile-active {
     padding-top: 1rem;
     flex-wrap: wrap;
-    height: calc(var(--nav-height) * 3);
+    height: calc(var(--nav-height) * 4);
     h2,
     .nav-links-container {
       flex: 0 0 50%;
@@ -145,7 +157,8 @@ const StyledHeader = styled.header`
   }
 `;
 
-export default function Header() {
+export default function Header({ loggedIn, setLoggedIn }) {
+  console.log(loggedIn);
   const [navOpen, setNavOpen] = useState(false);
 
   const [isDesktop, setDesktop] = useState(window.innerWidth > 768);
@@ -168,20 +181,56 @@ export default function Header() {
     <StyledHeader>
       <nav className={navOpen && !isDesktop ? "nav-mobile-active" : null}>
         <Link to="/" className="home-link">
-          <h2>Potluck Planner </h2>
+          <h2
+            onClick={() => {
+              setLoggedIn(false);
+            }}
+          >
+            Potluck Planner{" "}
+          </h2>
         </Link>
 
         <div className="nav-links-container">
+          {loggedIn ? (
+            <NavLink
+              to="/upcomingevents"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "var(--white)",
+              }}
+            >
+              Upcoming Events
+            </NavLink>
+          ) : null}
+
+          {loggedIn ? (
+            <NavLink
+              exact
+              to="/"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "var(--white)",
+              }}
+              onClick={() => {
+                setLoggedIn(false);
+              }}
+            >
+              Logout
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "var(--white)",
+              }}
+            >
+              Login
+            </NavLink>
+          )}
+
           <NavLink
-            to="/login"
-            activeStyle={{
-              fontWeight: "bold",
-              color: "var(--white)",
-            }}
-          >
-            Login
-          </NavLink>
-          <NavLink
+            className="signupLink"
             to="/signup"
             activeStyle={{
               fontWeight: "bold",
@@ -189,7 +238,6 @@ export default function Header() {
               border: "1px solid var(--white)",
             }}
           >
-            {" "}
             Sign Up
           </NavLink>
         </div>
@@ -203,17 +251,47 @@ export default function Header() {
         </div>
 
         <div className="mobile-nav-links-container ">
-          <NavLink
-            onClick={toggleNav}
-            to="/login"
-            activeStyle={{
-              backgroundColor: "var(--black)",
-              color: "var(--white)",
-              fontWeight: "bold",
-            }}
-          >
-            Login
-          </NavLink>
+          {loggedIn ? (
+            <NavLink
+              onClick={toggleNav}
+              to="/upcomingevents"
+              activeStyle={{
+                backgroundColor: "var(--black)",
+                color: "var(--white)",
+                fontWeight: "bold",
+              }}
+            >
+              Upcoming Events
+            </NavLink>
+          ) : null}
+
+          {loggedIn ? (
+            <NavLink
+              to="/"
+              activeStyle={{
+                backgroundColor: "var(--black)",
+                color: "var(--white)",
+                fontWeight: "bold",
+              }}
+              onClick={() => {
+                setLoggedIn(false);
+                toggleNav();
+              }}
+            >
+              Logout
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "var(--white)",
+              }}
+            >
+              Login
+            </NavLink>
+          )}
+
           <NavLink
             onClick={toggleNav}
             to="/signup"
@@ -223,7 +301,6 @@ export default function Header() {
               fontWeight: "bold",
             }}
           >
-            {" "}
             Sign Up
           </NavLink>
         </div>

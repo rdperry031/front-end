@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utilities/axiosWithAuth";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // Styling
 import "bootstrap/dist/css/bootstrap.css";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  //   FormFeedback,
-  Button,
-  Col,
-  Row,
-} from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
 import styled from "styled-components";
 
 const StyledAddEvent = styled.div`
@@ -21,9 +12,9 @@ const StyledAddEvent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 2rem 0;
 
   form {
-    // text-align: center;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
       rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     padding: 2% 3%;
@@ -43,18 +34,39 @@ const StyledAddEvent = styled.div`
     margin-bottom: 2%;
   }
 
-  button {
-    margin-top: 2%;
+  button:nth-of-type(1) {
     background-color: var(--accent-color);
-    border: none;
-
     &:hover {
       background-color: #58602e;
     }
   }
 
+  a {
+    display: flex;
+    background-color: #b8000c;
+    padding: 0 2%;
+    height: inherit;
+    border-radius: 10%;
+    color: white;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    border: none;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 2.5rem;
+    margin-top: 3%;
+  }
+
   @media (min-height: 900px) {
-    height: calc(100vh - 210px);
+    height: calc(100vh - 274px);
   }
 
   @media (max-height: 900px) {
@@ -64,7 +76,7 @@ const StyledAddEvent = styled.div`
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 950px) {
     form {
       width: 70%;
     }
@@ -95,8 +107,7 @@ export default function AddEvent() {
     axiosWithAuth()
       .post(`/potlucks`, formValues)
       .then((res) => {
-        console.log(res);
-        push("/potluckitems");
+        push(`/upcomingevents/${res.data.potluck_id}`);
       })
       .catch((err) => console.log({ err }));
   };
@@ -116,16 +127,6 @@ export default function AddEvent() {
     }
   });
 
-  //   window.addEventListener("resize", function (e) {
-  //     if (e.target.innerWidth <= 770) {
-  //       mdValue1 = 6;
-  //       mdValue2 = 5;
-  //     } else {
-  //       mdValue1 = 12;
-  //       mdValue2 = 12;
-  //     }
-  //   });
-
   return (
     <StyledAddEvent>
       <Form onSubmit={handleSubmit}>
@@ -137,7 +138,7 @@ export default function AddEvent() {
           name="potluck_name"
           onChange={handleChange}
         />
-        {/* <label htmlFor= 'potluck_time'>Time</label> */}
+
         <FormGroup>
           <Label htmlFor="potluck_description">Potluck Description</Label>
           <Input
@@ -189,7 +190,12 @@ export default function AddEvent() {
             onChange={handleChange}
           />
         </FormGroup>
-        <Button>Create Potluck</Button>
+        <div className="buttons-container">
+          <Button>Create Potluck</Button>
+          <Link exact to="/upcomingevents">
+            Cancel
+          </Link>
+        </div>
       </Form>
     </StyledAddEvent>
   );
