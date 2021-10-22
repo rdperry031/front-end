@@ -13,8 +13,6 @@ import {
   FormFeedback,
 } from "reactstrap";
 
-import styled from "styled-components";
-
 import bin from "../assets/Images/bin.png";
 
 const initialFormFields = {
@@ -54,7 +52,7 @@ export default function PotluckItems() {
       .then((res) => {
         setFoodItems(res.data);
       });
-  });
+  },[]);
 
   const deleteFood = (id) => {
     setFoodItems(foodItems.filter((item) => item.food_id !== +id));
@@ -69,6 +67,7 @@ export default function PotluckItems() {
       .catch((err) => console.log({ err }));
   };
 
+  
   return (
     <>
       <h2>Add an Item</h2>

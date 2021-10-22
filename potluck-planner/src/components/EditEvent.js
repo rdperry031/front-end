@@ -107,7 +107,7 @@ export default function EditEvent() {
       .catch((err) => {
         console.log({ err });
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     axiosWithAuth()
@@ -118,7 +118,7 @@ export default function EditEvent() {
       .catch((err) => {
         console.log({ err });
       });
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     setFormValues({
