@@ -10,7 +10,7 @@
   --secondary-color: #c9a97a;
   --secondary-color-opac: #c9a97aa9;
   --accent-color: #8a9748;
-  --accent-color-dark: #58602E;
+  --accent-color-dark: #58602e;
   --main-text-color: black;
   --white: #ffffff;
   --black: black;
@@ -66,4 +66,3 @@ body {
   display: flex;
   flex-direction: column;
 }
-

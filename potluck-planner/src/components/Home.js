@@ -5,22 +5,21 @@ import Header from "./Header";
 
 import { ReactComponent as BannerIllustration } from "../assets/Images/Home-Page/events-illustration.svg";
 
-
 const StyledBannerContainer = styled.div`
-
   display: flex;
   justify-content: center;
   height: 100%;
 
-
-
-  @media (min-height:920px){
+  @media (min-width: 775px) {
     height: calc(100vh - 210px);
+
+    @media (max-height: 950px) {
+      height: unset;
+    }
   }
 
-  @media (max-width: 1300px){
+  @media (max-width: 1300px) {
     margin-bottom: 2rem;
-
   }
 
   .banner-text-container {
@@ -114,7 +113,6 @@ const StyledBannerContainer = styled.div`
 `;
 
 export default function Home() {
-  
 
   return (
     <>
@@ -136,7 +134,6 @@ export default function Home() {
           <Link to="/signup">Register Now</Link>
         </div>
 
-        {/* <div className="banner-illustration"></div> */}
         <BannerIllustration />
       </StyledBannerContainer>
     </>

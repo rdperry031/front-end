@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Jumbotron, Button } from "reactstrap";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const StyledEvent = styled.div`
   width: max-content;
@@ -14,10 +14,11 @@ const StyledEvent = styled.div`
 
   .buttons-container {
     display: flex;
-    justify-content: flex-start;
+    height: 3%;
   }
 
-  button:nth-of-type(1) {
+  button {
+    height: inherit;
     margin-right: 1rem;
   }
 
@@ -28,7 +29,6 @@ const StyledEvent = styled.div`
 
   @media (max-width: 630px) {
     flex: 0 0 90%;
-
     margin: 2rem auto;
   }
 `;
@@ -78,7 +78,6 @@ export default function Event(props) {
         </p>
 
         <hr className="my-3" />
-        <p>Edit or Delete this event</p>
         <div className="buttons-container">
           <Link to={`/edit/${potluck.potluck_id}`}>
             <Button color="primary">Edit</Button>
@@ -87,24 +86,10 @@ export default function Event(props) {
             Delete
           </Button>
           <Link to={`/upcomingevents/${potluck.potluck_id}`}>
-            <Button type='button'>View Event</Button>
+            <Button type="button">View</Button>
           </Link>
         </div>
       </Jumbotron>
     </StyledEvent>
-
-    // <StyledEvent>
-    //   <h2>{potluck.potluck_name}</h2>
-    //   <div>
-    //     <p>Location: {potluck.potluck_location}</p>
-    //     <p>Time: {potluck.potluck_time}</p>
-    //     <p>Date: {potluck.potluck_date}</p>
-    //   </div>
-    //   <p>{potluck.potluck_description}</p>
-    //   <div>
-    //     <button onClick={handleDelete}>Delete Event</button>
-    //     <button>Edit Event</button>
-    //   </div>
-    // </StyledEvent>
   );
 }

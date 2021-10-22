@@ -1,5 +1,5 @@
 import { Route, Link, Switch } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
 import Home from "./components/Home";
 import AddEvent from "./components/AddEvent";
@@ -13,24 +13,28 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import PrivateRoute from "./components/PrivateRoute";
 import PotluckItems from "./components/PotluckItems";
-import Potluck from './components/Potluck'
 
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className="App">
-      <Header />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+
       <Switch>
+
+
        <PrivateRoute path="/edit/:id" component={EditEvent}/>
        <PrivateRoute path='/upcomingevents/:id' component={Potluck}/>
        <PrivateRoute path="/potluckitems" component={PotluckItems}/>
        <PrivateRoute path="/add"component={AddEvent}/>
        <PrivateRoute path="/upcomingevents" component={UpcomingEvents}/>
+
         <Route path="/logout">
           <Logout />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         </Route>
         <Route path="/team">
           <Team />

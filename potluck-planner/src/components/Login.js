@@ -108,12 +108,16 @@ export default function Login(props) {
     axiosWithAuth()
       .post("auth/login", state.credentials)
       .then((res) => {
-        console.log(res);
+        setFormErrors(initialFormErrors);
         localStorage.setItem("token", res.data.token);
         push("/upcomingevents");
+        props.setLoggedIn(true);
       })
       .catch((err) => {
-        console.log(err);
+        setFormErrors({
+          ...formErrors,
+          navValid: "this account does not exist",
+        });
       });
   };
 
@@ -177,7 +181,7 @@ export default function Login(props) {
           />
           <FormFeedback>{formErrors.password}</FormFeedback>
         </FormGroup>
-
+        <p>{formErrors.navValid ? formErrors.navValid : ""}</p>
         <Button disabled={disabled}>Login</Button>
       </Form>
 
