@@ -1,4 +1,4 @@
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 import React, { useState } from "react";
 
 import Home from "./components/Home";
@@ -39,7 +39,8 @@ function App() {
           <Team />
         </Route>
         <Route path="/signup">
-          <SignUp />
+          {token !== null ? <Redirect to='/upcomingevents'/>
+          : <SignUp /> }
         </Route>
         <Route exact path="/">
           <Home />
