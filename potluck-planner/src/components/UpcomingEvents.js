@@ -40,6 +40,7 @@ import { Button } from "reactstrap";
       }
     }
   `;
+  
 export default function UpcomingEvents() {
   const { push } = useHistory();
   const [potlucks, setPotlucks] = useState([]);
