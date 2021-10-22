@@ -44,6 +44,8 @@ We love JavaScript and React makes it easy. We are thrilled with Redux and the r
     -  npm i Yup
     -  npm i styled-components
     -  npm i axios
+    -  npm i react-router-dom
+    -  npm i bootstrap
   - Above all Have Fun!
 ## General Instructions for React Apps
 
