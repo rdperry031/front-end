@@ -192,7 +192,7 @@ export default function AddEvent() {
         </FormGroup>
         <div className="buttons-container">
           <Button>Create Potluck</Button>
-          <Link exact to="/upcomingevents">
+          <Link to="/upcomingevents">
             Cancel
           </Link>
         </div>

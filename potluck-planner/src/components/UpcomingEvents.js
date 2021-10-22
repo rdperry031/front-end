@@ -8,6 +8,39 @@ import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
 
+  //   Styling
+  const StyledUpcomingEvents = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      text-align: center;
+      margin-top: 5%;
+    }
+
+    .events-container {
+      display: flex;
+
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .createNew {
+      background-color: var(--accent-color);
+      border: none;
+      width: max-content;
+      margin-bottom: 2rem;
+      &:hover {
+        background-color: var(--accent-color-dark);
+      }
+    }
+  `;
+  
 export default function UpcomingEvents() {
   const { push } = useHistory();
   const [potlucks, setPotlucks] = useState([]);
@@ -46,38 +79,6 @@ export default function UpcomingEvents() {
     push("/add");
   };
 
-  //   Styling
-  const StyledUpcomingEvents = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-      text-align: center;
-      margin-top: 5%;
-    }
-
-    .events-container {
-      display: flex;
-
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    .createNew {
-      background-color: var(--accent-color);
-      border: none;
-      width: max-content;
-      margin-bottom: 2rem;
-      &:hover {
-        background-color: var(--accent-color-dark);
-      }
-    }
-  `;
 
   return (
     <StyledUpcomingEvents>

@@ -110,27 +110,24 @@ export default function Potluck() {
 
   let formattedTime = formatTime(potluck?.potluck_time);
 
-  const getPotluckName = () => {
+  useEffect(() => {
     axiosWithAuth()
       .get(`/potlucks/${id}`)
       .then((res) => {
         setPotluckName(res.data);
       })
       .catch((err) => console.log({ err }));
-  };
+  }, [id]);
 
-  const getPotluck = () => {
+  useEffect(() => {
     axiosWithAuth()
       .get(`/potlucks/${id}`)
       .then((res) => {
         setPotluck(res.data.details);
       });
-  };
+  },[id]);
 
-  useEffect(() => {
-    getPotluck();
-    getPotluckName();
-  }, []);
+  
 
   return (
     <StyledPotluck>
