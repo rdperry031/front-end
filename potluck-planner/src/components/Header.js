@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
+import { useLogoutButton } from "../Hooks/useLogoutButton";
 
 const StyledHeader = styled.header`
   nav {
@@ -157,11 +158,15 @@ const StyledHeader = styled.header`
   }
 `;
 
+
 export default function Header({ loggedIn, setLoggedIn }) {
-  console.log(loggedIn);
+  
+
   const [navOpen, setNavOpen] = useState(false);
 
   const [isDesktop, setDesktop] = useState(window.innerWidth > 768);
+
+  const [logout, setLogout] = useLogoutButton([false])
 
   const updateMedia = () => {
     setDesktop(window.innerWidth > 768);
@@ -173,11 +178,19 @@ export default function Header({ loggedIn, setLoggedIn }) {
     return () => window.removeEventListener("resize", updateMedia);
   });
 
-  const toggleNav = () => {
-    setNavOpen((prev) => !prev);
-  };
-
-  return (
+   let token = localStorage.getItem('token');
+  
+   
+   useEffect(() => {
+     token !== null ? setLogout(true) : setLogout(false);
+   },[setLogout, token])
+   
+   
+   const toggleNav = () => {
+     setNavOpen((prev) => !prev);
+    };
+    
+    return (
     <StyledHeader>
       <nav className={navOpen && !isDesktop ? "nav-mobile-active" : null}>
         <Link to="/" className="home-link">
@@ -229,8 +242,8 @@ export default function Header({ loggedIn, setLoggedIn }) {
             </NavLink>
           )}
 
+         
           <NavLink
-            className="signupLink"
             to="/signup"
             activeStyle={{
               fontWeight: "bold",

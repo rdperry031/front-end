@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Header from "./Header";
 
 import { ReactComponent as BannerIllustration } from "../assets/Images/Home-Page/events-illustration.svg";
 
@@ -112,6 +113,7 @@ const StyledBannerContainer = styled.div`
 `;
 
 export default function Home() {
+
   return (
     <>
       <StyledBannerContainer className="responsive">
