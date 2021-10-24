@@ -79,10 +79,10 @@ export default function UpcomingEvents() {
     push("/add");
   };
 
-
   return (
     <StyledUpcomingEvents>
-      <h1>Upcoming Potlucks</h1>
+    {(potlucks.length === 0) ? <h2>Loading Potlucks...</h2> : <h1>Upcoming Potlucks</h1>}
+      
 
       <div className="events-container">
         {potlucks.map((potluck) => {
