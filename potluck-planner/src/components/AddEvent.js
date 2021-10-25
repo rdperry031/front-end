@@ -107,6 +107,7 @@ export default function AddEvent() {
     axiosWithAuth()
       .post(`/potlucks`, formValues)
       .then((res) => {
+        console.log(res)
         push(`/upcomingevents/${res.data.potluck_id}`);
       })
       .catch((err) => console.log({ err }));
@@ -174,7 +175,8 @@ export default function AddEvent() {
                 id="potluck_date"
                 value={formValues.potluck_date}
                 name="potluck_date"
-                type="date"
+                // type="date"
+                // required pattern="\d{4}-\d{2}-\d{2}"
                 onChange={handleChange}
               />
             </FormGroup>

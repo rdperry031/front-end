@@ -96,7 +96,7 @@ export default function EditEvent() {
     organizer: 2,
   });
 
-  const [potluckName, setPotluckName] = useState([]);
+  const [potluckName, setPotluckName] = useState({potluck_name: ''});
 
   useEffect(() => {
     axiosWithAuth()
@@ -146,7 +146,6 @@ export default function EditEvent() {
         organizer: 2,
       })
       .then((res) => {
-        setFormValues(res.data);
         push("/upcomingevents");
       })
       .catch((err) => console.log(err.response));
@@ -157,6 +156,7 @@ export default function EditEvent() {
 
   let x = window.matchMedia("(max-width: 770px)");
 
+
   x.addEventListener("change", function (e) {
     if (e.matches) {
       mdValue1 = 6;
@@ -166,6 +166,8 @@ export default function EditEvent() {
       mdValue2 = 12;
     }
   });
+
+  const date = formValues.potluck_date.slice(0,10)
 
   return (
     <StyledAddEvent>
@@ -211,7 +213,7 @@ export default function EditEvent() {
               <Label htmlFor="potluck_date">Date</Label>
               <Input
                 id="potluck_date"
-                value={formValues.potluck_date}
+                value={date}
                 name="potluck_date"
                 type="date"
                 onChange={handleChange}

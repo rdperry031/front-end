@@ -86,7 +86,7 @@ export default function Potluck() {
   const formatDate = (date) => {
     if (!date) return "";
     const day = date.slice(8, 10);
-    const month = date.slice(5, 7);
+    const month = date.slice(5, 7)-1;
     const year = date.slice(0, 4);
 
     return new Date(year, month, day)
