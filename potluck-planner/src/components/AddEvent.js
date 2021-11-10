@@ -113,7 +113,7 @@ const StyledAddEvent = styled.div`
     // }
     props.postEvent(formValues)
     props.setId(id)
-    push(`upcomingevents/${id}`)
+    push(`upcomingevents/${Number(id) + 1}`)
     
   };
 
