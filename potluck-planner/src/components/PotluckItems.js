@@ -36,7 +36,6 @@ export default function PotluckItems() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     axiosWithAuth()
       .post(`/foods`, itemFields)
       .then((res) => {
