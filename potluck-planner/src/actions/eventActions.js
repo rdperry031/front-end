@@ -1,5 +1,4 @@
 import axiosWithAuth from "../utilities/axiosWithAuth";
-import { useHistory } from "react-router";
 export const ADD_EVENT = 'ADD_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE';

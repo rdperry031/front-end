@@ -210,7 +210,7 @@ const StyledAddEvent = styled.div`
 const mapStateToProps = (state) => {
   return ({
     errorMessage: state.errorMessage,
-    id: state.id++
+    id: state.id
   })
 }
 
