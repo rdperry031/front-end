@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utilities/axiosWithAuth";
 import { useHistory, Link } from "react-router-dom";
+import { connect } from 'react-redux'
+import { addEvent, setError, postEvent, setId } from "../actions/eventActions";
 
 // Styling
 import "bootstrap/dist/css/bootstrap.css";
 import { Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
 import styled from "styled-components";
+
 
 const StyledAddEvent = styled.div`
   width: 100%;
@@ -83,8 +86,9 @@ const StyledAddEvent = styled.div`
   }
 `;
 
-export default function AddEvent() {
+ const AddEventForm = (props) => {
   const { push } = useHistory();
+   const { id, errorMessage } = props
 
   const [formValues, setFormValues] = useState({
     potluck_name: "",
@@ -104,13 +108,13 @@ export default function AddEvent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post(`/potlucks`, formValues)
-      .then((res) => {
-        console.log(res)
-        push(`/upcomingevents/${res.data.potluck_id}`);
-      })
-      .catch((err) => console.log({ err }));
+    // if (formValues.potluck_name === ''){
+    //  props.setError('Potluck name is required')
+    // }
+    props.postEvent(formValues)
+    props.setId(id)
+    push(`upcomingevents/${id}`)
+    
   };
 
   let mdValue1 = 6;
@@ -139,7 +143,7 @@ export default function AddEvent() {
           name="potluck_name"
           onChange={handleChange}
         />
-
+        {errorMessage}
         <FormGroup>
           <Label htmlFor="potluck_description">Potluck Description</Label>
           <Input
@@ -152,7 +156,7 @@ export default function AddEvent() {
             rows="5"
             cols="15"
           />
-        </FormGroup>
+        </FormGroup> 
 
         <Row form>
           <Col className={`col-md${mdValue1}`}>
@@ -175,13 +179,13 @@ export default function AddEvent() {
                 id="potluck_date"
                 value={formValues.potluck_date}
                 name="potluck_date"
-                // type="date"
+                type="date"
                 // required pattern="\d{4}-\d{2}-\d{2}"
                 onChange={handleChange}
               />
             </FormGroup>
           </Col>
-        </Row>
+        </Row> 
 
         <FormGroup>
           <Label htmlFor="potluck_location">Location</Label>
@@ -202,3 +206,12 @@ export default function AddEvent() {
     </StyledAddEvent>
   );
 }
+
+const mapStateToProps = (state) => {
+  return ({
+    errorMessage: state.errorMessage,
+    id: state.id++
+  })
+}
+
+export default connect(mapStateToProps, {addEvent, setError, postEvent, setId})(AddEventForm)
